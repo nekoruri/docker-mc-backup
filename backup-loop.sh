@@ -59,7 +59,7 @@ while true; do
     rcon-cli save-on
 
     if [ $saved == 1 -a ! -z "$RCLONE_DEST" ]; then
-        rclone copy $outFile $RCLONE_DEST/${BACKUP_NAME}-${ts}.tgz
+        rclone copy $outFile $RCLONE_DEST
     fi
   else
     log ERROR "rcon save-off command failed"
