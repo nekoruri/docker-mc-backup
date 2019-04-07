@@ -1,6 +1,7 @@
 FROM alpine
 
-RUN apk -U add unzip bash
+RUN apk -U add unzip bash ca-certificates
+RUN update-ca-certificates
 
 ARG RCLONE_VERSION=1.46
 ARG RCON_CLI_VERSION=1.4.4
