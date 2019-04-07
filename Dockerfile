@@ -45,7 +45,7 @@ ADD https://downloads.rclone.org/v${RCLONE_VERSION}/rclone-v${RCLONE_VERSION}-li
 RUN mkdir -p /tmp/rclone && \
     unzip /tmp/rclone.zip -d /tmp/rclone && \
     mv /tmp/rclone/rclone-v${RCLONE_VERSION}-linux-${TARGETARCH}/rclone /opt/rclone && \
-    /opt/rclone config create s3 s3 && \
+    /opt/rclone config create s3 s3 env_auth true && \
     chmod +x /opt/rclone
 
 
