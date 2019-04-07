@@ -36,6 +36,7 @@ sleep ${INITIAL_DELAY}
 
 while true; do
   ts=$(date -u +"%Y%m%d-%H%M%S")
+  saved=0
 
   rcon-cli save-off
   if [ $? = 0 ]; then
@@ -50,11 +51,16 @@ while true; do
         log ERROR "backup failed"
       else
         log INFO "successfully backed up"
+        saved=1
       fi
 
     fi
 
     rcon-cli save-on
+
+    if [ $saved == 1 -a ! -z "$RCLONE_DEST" ]; then
+        rclone copy $outFile $RCLONE_DEST/${BACKUP_NAME}-${ts}.tgz
+    fi
   else
     log ERROR "rcon save-off command failed"
   fi
