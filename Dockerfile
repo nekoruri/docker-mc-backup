@@ -10,7 +10,7 @@ ADD https://github.com/ncw/rclone/releases/download/v${RCLONE_VERSION}/rclone-v$
 
 RUN unzip /tmp/rclone.zip -d /opt && \
     ln -s /opt/rclone-v${RCLONE_VERSION}-linux-amd64/rclone /usr/bin && \
-    /usr/bin/rclone config create s3 s3 && \
+    /usr/bin/rclone config create s3 s3 env_auth true && \
     rm /tmp/rclone.zip
 
 ADD https://github.com/itzg/rcon-cli/releases/download/${RCON_CLI_VERSION}/rcon-cli_${RCON_CLI_VERSION}_linux_amd64.tar.gz /tmp/rcon-cli.tgz
